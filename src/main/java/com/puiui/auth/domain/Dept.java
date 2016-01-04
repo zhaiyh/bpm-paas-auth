@@ -23,7 +23,7 @@ public class Dept extends Model {
     private Dept parent; // 父部门
     @OneToMany(mappedBy = "parent")
     private Set<Dept> children; // 子部门
-    @Column(length = 100)
+    @Column(length = 100, nullable = false)
     private String deptName; // 部门名称
     @Column(length = 500)
     private String deptDesc; // 部门描述

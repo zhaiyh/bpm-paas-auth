@@ -4,7 +4,7 @@
     <groupId>webdemo001</groupId>
     <artifactId>webdemo001</artifactId>
     <packaging>war</packaging>
-    <version>1.0-SNAPSHOT</version>
+    <version>2.0-SNAPSHOT</version>
     <name>webdemo001 Maven Webapp</name>
     <url>http://maven.apache.org</url>
     <dependencies>
@@ -134,5 +134,56 @@
         </dependency>
 
     </dependencies>
-
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.avaje.ebeanorm</groupId>
+                <artifactId>avaje-ebeanorm-mavenenhancer</artifactId>
+                <version>4.8.1</version>
+                <executions>
+                    <execution>
+                        <id>main</id>
+                        <phase>process-classes</phase>
+                        <configuration>
+                            <packages>com.puiui.auth.domain.**</packages>
+                            <transformArgs>debug=1</transformArgs>
+                        </configuration>
+                        <goals>
+                            <goal>enhance</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.avaje.ebeanorm</groupId>
+                <artifactId>querybean-maven-plugin</artifactId>
+                <version>2.1.1</version>
+                <executions>
+                    <!-- enhance code -->
+                    <execution>
+                        <id>main</id>
+                        <phase>process-classes</phase>
+                        <configuration>
+                            <transformArgs>debug=0</transformArgs>
+                        </configuration>
+                        <goals>
+                            <goal>enhance</goal>
+                        </goals>
+                    </execution>
+                    <!-- enhance test code -->
+                    <execution>
+                        <id>test</id>
+                        <phase>process-test-classes</phase>
+                        <configuration>
+                            <classSource>target/test-classes</classSource>
+                            <transformArgs>debug=0</transformArgs>
+                        </configuration>
+                        <goals>
+                            <goal>enhance</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>
