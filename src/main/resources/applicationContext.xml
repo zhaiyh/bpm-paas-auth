@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
+    <context:annotation-config/>
+    <context:component-scan base-package="com.puiui.auth"/>
+
+    <bean name="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/auth"/>
+        <property name="username" value="root"/>
+        <property name="password" value="root"/>
+    </bean>
+
+    <bean name="serverConfig" class="com.avaje.ebean.config.ServerConfig">
+        <property name="name" value="mysql"></property>
+        <property name="dataSource" ref="dataSource"></property>
+        <property name="defaultServer" value="true"></property>
+
+        <property name="ddlGenerate" value="true"></property>
+        <property name="ddlRun" value="true"></property>
+
+    </bean>
+    <bean name="ebeanServer" class="com.avaje.ebean.springsupport.factory.EbeanServerFactoryBean">
+        <property name="serverConfig" ref="serverConfig"></property>
+    </bean>
+</beans>
