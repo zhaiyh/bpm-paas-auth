@@ -14,7 +14,6 @@ import java.util.List;
 @RequestMapping("/user")
 public class UserController {
 
-
     @ResponseBody
     @RequestMapping("/list")
     public List<User> list() {

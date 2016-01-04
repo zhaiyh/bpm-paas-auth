@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -24,8 +26,8 @@ public class DeptController {
     @ResponseBody
     @RequestMapping(value = "/list/{pid}", method = RequestMethod.GET)
     public List<DeptDto> listByParent(@PathVariable Long pid) {
-        List<DeptDto> deptDtos = deptService.queryByParent(pid);
-        return null;
+        List<DeptDto> deptDtos = deptService.queryByParentId(pid);
+        return deptDtos;
     }
 
     public DeptService getDeptService() {
