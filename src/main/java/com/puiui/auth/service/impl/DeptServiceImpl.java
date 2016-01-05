@@ -1,19 +1,18 @@
 package com.puiui.auth.service.impl;
 
+import com.avaje.ebean.EbeanServer;
 import com.puiui.auth.dao.DeptDao;
 import com.puiui.auth.dao.UserDao;
+import com.puiui.auth.dao.UserDeptMapDao;
 import com.puiui.auth.domain.Dept;
-import com.puiui.auth.domain.User;
+import com.puiui.auth.domain.UserDeptMap;
 import com.puiui.auth.service.DeptService;
 import com.puiui.auth.web.dto.DeptDto;
+import com.puiui.auth.web.dto.TreeDto;
 import org.springframework.stereotype.Component;
-import com.avaje.ebean.EbeanServer;
 
 import javax.annotation.Resource;
-import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @Component
 public class DeptServiceImpl implements DeptService {
@@ -23,12 +22,14 @@ public class DeptServiceImpl implements DeptService {
     private DeptDao deptDao;
     @Resource
     private UserDao userDao;
+    @Resource
+    private UserDeptMapDao userDeptMapDao;
 
-    public List<DeptDto> queryByParentId(Long pid) {
-        List<Dept> depts = deptDao.findByParentId(pid);
-        List<User> users = userDao.findByDeptId(pid);
+    public List<TreeDto> queryTreeByParentId(Long pid) {
+        List<Dept> depts = deptDao.findPartByParentId(pid);
+        List<UserDeptMap> userDeptMaps = userDeptMapDao.findPartByDeptId(pid);
         System.out.println(depts);
-        System.out.println(users);
+        System.out.println(userDeptMaps);
         return null;
     }
 
@@ -54,5 +55,13 @@ public class DeptServiceImpl implements DeptService {
 
     public void setUserDao(UserDao userDao) {
         this.userDao = userDao;
+    }
+
+    public UserDeptMapDao getUserDeptMapDao() {
+        return userDeptMapDao;
+    }
+
+    public void setUserDeptMapDao(UserDeptMapDao userDeptMapDao) {
+        this.userDeptMapDao = userDeptMapDao;
     }
 }
