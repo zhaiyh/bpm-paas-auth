@@ -43,6 +43,8 @@ public class Menu extends Model {
     private Date updatedate; // 修改时间
     @OneToMany(mappedBy = "menu")
     private Set<RoleMenuMap> roleMenuMaps;
+    @Column(length = 50)
+    private String iconPath; // 图标路径
 
     public Menu() {
     }
@@ -147,7 +149,16 @@ public class Menu extends Model {
         return target;
     }
 
+
     public void setTarget(String target) {
         this.target = target;
+    }
+
+    public String getIconPath() {
+        return iconPath;
+    }
+
+    public void setIconPath(String iconPath) {
+        this.iconPath = iconPath;
     }
 }
