@@ -6,20 +6,20 @@ import com.puiui.auth.domain.Dept;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Component
 public class DeptDaoImpl implements DeptDao {
     @Resource
     private EbeanServer ebeanServer;
 
-    public Dept findByParentId(Long pid) {
+    public List<Dept> findByParentId(Long pid) {
         return ebeanServer
                 .find(Dept.class)
-                .select("id, children")
+                .select("id, deptName")
                 .where()
-                .eq("parent", new Dept(pid))
-                .order().asc("sortCode")
-                .findUnique();
+                .eq("parent_id", pid)
+                .findList();
     }
 
     public EbeanServer getEbeanServer() {
