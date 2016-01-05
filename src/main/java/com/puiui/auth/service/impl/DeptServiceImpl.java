@@ -12,6 +12,7 @@ import com.puiui.auth.web.dto.TreeDto;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
+import java.util.Collections;
 import java.util.List;
 
 @Component
@@ -26,11 +27,10 @@ public class DeptServiceImpl implements DeptService {
     private UserDeptMapDao userDeptMapDao;
 
     public List<TreeDto> queryTreeByParentId(Long pid) {
-        List<Dept> depts = deptDao.findPartByParentId(pid);
-        List<UserDeptMap> userDeptMaps = userDeptMapDao.findPartByDeptId(pid);
-        System.out.println(depts);
-        System.out.println(userDeptMaps);
-        return null;
+        List<TreeDto> deptTree = deptDao.findTreeByParentId(pid);
+        List<TreeDto> userTree = userDeptMapDao.findTreeByDeptId(pid);
+        deptTree.addAll(userTree);
+        return deptTree;
     }
 
     public DeptDao getDeptDao() {

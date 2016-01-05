@@ -4,11 +4,12 @@ package com.puiui.auth.web.dto;
  * Created by Administrator on 2016/1/5.
  */
 public class TreeDto {
-    private String name;
-    private Long id;
-    private String url;
-    private String target;
-
+    private String name; // 显示的名称
+    private Long id; // 节点id
+    private Long pId; // 父节点id
+    private String url; // 节点的链接
+    private String target; // 链接的目标
+    private String icon; // 节点显示的图标
 
     public String getName() {
         return name;
@@ -40,5 +41,21 @@ public class TreeDto {
 
     public void setTarget(String target) {
         this.target = target;
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+
+    public Long getpId() {
+        return pId;
+    }
+
+    public void setpId(Long pId) {
+        this.pId = pId;
     }
 }
