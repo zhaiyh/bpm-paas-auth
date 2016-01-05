@@ -26,6 +26,8 @@ public class UserDeptMap {
     private BasicCase isManager;
     @Column(nullable = false)
     private BasicCase isShow;
+    @Column(nullable = false)
+    private int sortCode;
     @CreatedTimestamp
     private Date createdate;
     @UpdatedTimestamp
@@ -88,5 +90,13 @@ public class UserDeptMap {
 
     public void setUpdatedate(Date updatedate) {
         this.updatedate = updatedate;
+    }
+
+    public int getSortCode() {
+        return sortCode;
+    }
+
+    public void setSortCode(int sortCode) {
+        this.sortCode = sortCode;
     }
 }
