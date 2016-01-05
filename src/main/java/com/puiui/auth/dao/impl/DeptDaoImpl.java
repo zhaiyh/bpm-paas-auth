@@ -13,7 +13,7 @@ public class DeptDaoImpl implements DeptDao {
     @Resource
     private EbeanServer ebeanServer;
 
-    public List<Dept> findByParentId(Long pid) {
+    public List<Dept> findPartByParentId(Long pid) {
         return ebeanServer
                 .find(Dept.class)
                 .select("id, deptName")

@@ -13,15 +13,6 @@ public class UserDaoImpl implements UserDao {
     @Resource
     private EbeanServer ebeanServer;
 
-    public List<User> findByDeptId(Long pid) {
-        return ebeanServer
-                .find(User.class)
-                .select("id, nickname")
-                .where()
-                .eq("uesrDeptMaps.dept.id", pid)
-                .findList();
-    }
-
     public EbeanServer getEbeanServer() {
         return ebeanServer;
     }
