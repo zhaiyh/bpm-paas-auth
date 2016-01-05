@@ -1,6 +1,7 @@
 package com.puiui.auth.dao.impl;
 
 import com.avaje.ebean.EbeanServer;
+import com.avaje.ebean.FetchConfig;
 import com.puiui.auth.dao.UserDeptMapDao;
 import com.puiui.auth.domain.UserDeptMap;
 import com.puiui.auth.domain.prop.BasicCase;
@@ -17,6 +18,7 @@ public class UserDeptMapDaoImpl implements UserDeptMapDao {
     public List<UserDeptMap> findPartByDeptId(Long id) {
         return ebeanServer.find(UserDeptMap.class)
                 .select("user, isManager")
+                .fetch("user.id, user.nickname")
                 .where()
                 .eq("isShow", BasicCase.YES)
                 .orderBy()
