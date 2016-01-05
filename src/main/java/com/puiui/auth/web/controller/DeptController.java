@@ -3,6 +3,7 @@ package com.puiui.auth.web.controller;
 import com.puiui.auth.domain.Dept;
 import com.puiui.auth.service.DeptService;
 import com.puiui.auth.web.dto.DeptDto;
+import com.puiui.auth.web.dto.TreeDto;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,10 +25,10 @@ public class DeptController {
     private DeptService deptService;
 
     @ResponseBody
-    @RequestMapping(value = "/list/{pid}", method = RequestMethod.GET)
-    public List<DeptDto> listByParent(@PathVariable Long pid) {
-        List<DeptDto> deptDtos = deptService.queryByParentId(pid);
-        return deptDtos;
+    @RequestMapping(value = "/tree/{pid}", method = RequestMethod.GET)
+    public List<TreeDto> listByParent(@PathVariable Long pid) {
+        List<TreeDto> treeDtos = deptService.queryTreeByParentId(pid);
+        return treeDtos;
     }
 
     public DeptService getDeptService() {
