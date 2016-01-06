@@ -6,5 +6,5 @@ import com.puiui.auth.web.dto.TreeDto;
 import java.util.List;
 
 public interface DeptDao {
-    List<TreeDto> findTreeByParentId(Long pid);
+    List<Dept> findByParentId(Long pid);
 }

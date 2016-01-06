@@ -6,12 +6,15 @@ import com.puiui.auth.dao.UserDao;
 import com.puiui.auth.dao.UserDeptMapDao;
 import com.puiui.auth.domain.Dept;
 import com.puiui.auth.domain.UserDeptMap;
+import com.puiui.auth.domain.prop.BasicCase;
 import com.puiui.auth.service.DeptService;
 import com.puiui.auth.web.dto.DeptDto;
 import com.puiui.auth.web.dto.TreeDto;
 import org.springframework.stereotype.Component;
+import sun.reflect.generics.tree.Tree;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -27,10 +30,37 @@ public class DeptServiceImpl implements DeptService {
     private UserDeptMapDao userDeptMapDao;
 
     public List<TreeDto> queryTreeByParentId(Long pid) {
-        List<TreeDto> deptTree = deptDao.findTreeByParentId(pid);
-        List<TreeDto> userTree = userDeptMapDao.findTreeByDeptId(pid);
-        deptTree.addAll(userTree);
-        return deptTree;
+        List<Dept> depts = deptDao.findByParentId(pid);
+        List<UserDeptMap> userDeptMaps = userDeptMapDao.findByDeptId(pid);
+
+        List<TreeDto> treeDtos = new ArrayList<TreeDto>();
+        TreeDto treeDto = null;
+        for (Dept dept : depts) {
+            treeDto = new TreeDto();
+            treeDto.setId(dept.getId());
+            treeDto.setIcon("D");
+            treeDto.setName(dept.getDeptName());
+            treeDto.setpId(pid);
+            treeDto.setTarget("");
+            treeDto.setUrl("");
+            treeDtos.add(treeDto);
+        }
+
+        for (UserDeptMap userDeptMap : userDeptMaps) {
+            treeDto = new TreeDto();
+            treeDto.setId(userDeptMap.getUser().getId());
+            treeDto.setUrl("");
+            treeDto.setTarget("");
+            treeDto.setpId(pid);
+            treeDto.setName(userDeptMap.getUser().getNickname());
+            if (userDeptMap.getIsManager() == BasicCase.YES) {
+                treeDto.setIcon("");
+            } else {
+                treeDto.setIcon("");
+            }
+            treeDtos.add(treeDto);
+        }
+        return treeDtos;
     }
 
     public DeptDao getDeptDao() {

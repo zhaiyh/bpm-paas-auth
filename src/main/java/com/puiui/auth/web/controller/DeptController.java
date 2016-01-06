@@ -27,8 +27,7 @@ public class DeptController {
     @ResponseBody
     @RequestMapping(value = "/tree/{pid}", method = RequestMethod.GET)
     public List<TreeDto> listByParent(@PathVariable Long pid) {
-        List<TreeDto> treeDtos = deptService.queryTreeByParentId(pid);
-        return treeDtos;
+        return deptService.queryTreeByParentId(pid);
     }
 
     public DeptService getDeptService() {
