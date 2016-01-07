@@ -63,6 +63,16 @@ public class DeptServiceImpl implements DeptService {
         return treeDtos;
     }
 
+    public void save(DeptDto deptDto) {
+        Dept parent = ebeanServer.find(Dept.class, deptDto.getPid());
+        Dept dept = new Dept(deptDto.getDeptName(), deptDto.getDeptDesc());
+        Integer sortCode = deptDao.findMaxSortCodeByParentId(deptDto.getPid());
+        dept.setSortCode(sortCode + 1);
+        dept.setDeptLevel((short)(parent.getDeptLevel() + 1));
+        dept.setParent(parent);
+        dept.save();
+    }
+
     public DeptDao getDeptDao() {
         return deptDao;
     }
