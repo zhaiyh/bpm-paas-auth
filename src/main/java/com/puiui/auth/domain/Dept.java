@@ -41,6 +41,11 @@ public class Dept extends Model {
     public Dept() {
     }
 
+    public Dept(String deptName, String deptDesc) {
+        this.deptName = deptName;
+        this.deptDesc = deptDesc;
+    }
+
     public Dept(Long id) {
         this.id = id;
     }
