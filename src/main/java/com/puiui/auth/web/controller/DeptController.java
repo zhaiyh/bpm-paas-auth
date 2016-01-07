@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
-import java.util.Arrays;
-import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by zhaiyinghao on 2016/1/3.
@@ -28,6 +28,21 @@ public class DeptController {
     @RequestMapping(value = "/tree/{pid}", method = RequestMethod.GET)
     public List<TreeDto> listByParent(@PathVariable Long pid) {
         return deptService.queryTreeByParentId(pid);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    public Map<String, Object> add(DeptDto deptDto) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        try {
+            deptService.save(deptDto);
+            map.put("status", "OK");
+            map.put("status", "添加成功");
+        } catch (Exception e) {
+            map.put("status", "ERR");
+            map.put("message", "添加失败");
+        }
+        return map;
     }
 
     public DeptService getDeptService() {
