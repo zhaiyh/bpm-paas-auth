@@ -4,13 +4,17 @@ package com.puiui.auth.web.dto;
  * Created by zhaiyinghao on 2016/1/2.
  */
 public class UserDto {
+    private Long deptId;
     public int id;
     public String username;
-    public String email;
     public String nickname;
     public String mobileNum;
     public int gender;
     public String status;
+    private String email;
+    private String password;
+    private String isAdmin;
+
 
     public String getUsername() {
         return username;
@@ -67,5 +71,29 @@ public class UserDto {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public Long getDeptId() {
+        return deptId;
+    }
+
+    public void setDeptId(Long deptId) {
+        this.deptId = deptId;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getIsAdmin() {
+        return isAdmin;
+    }
+
+    public void setIsAdmin(String isAdmin) {
+        this.isAdmin = isAdmin;
     }
 }
