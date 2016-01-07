@@ -24,6 +24,17 @@ public class DeptDaoImpl implements DeptDao {
                 .findList();
     }
 
+    public Integer findMaxSortCodeByParentId(Long pid) {
+        String sql = "select max(sort_code) code"
+                    +  " from auth_dept"
+                    +  " where parent_id = :pid";
+        return Ebean
+                .createSqlQuery(sql)
+                .setParameter("pid", pid)
+                .findUnique()
+                .getInteger("code");
+    }
+
     public EbeanServer getEbeanServer() {
         return ebeanServer;
     }
