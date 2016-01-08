@@ -5,10 +5,7 @@ import com.puiui.auth.service.DeptService;
 import com.puiui.auth.web.dto.DeptDto;
 import com.puiui.auth.web.dto.TreeDto;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.HashMap;
@@ -32,14 +29,14 @@ public class DeptController {
 
     @ResponseBody
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public Map<String, Object> add(DeptDto deptDto) {
+    public Map<String, Object> add(@ModelAttribute DeptDto deptDto) {
         Map<String, Object> map = new HashMap<String, Object>();
         try {
             deptService.save(deptDto);
-            map.put("status", "OK");
-            map.put("status", "添加成功");
+            map.put("status", Boolean.TRUE);
+            map.put("message", "添加成功");
         } catch (Exception e) {
-            map.put("status", "ERR");
+            map.put("status", Boolean.FALSE);
             map.put("message", "添加失败");
         }
         return map;
