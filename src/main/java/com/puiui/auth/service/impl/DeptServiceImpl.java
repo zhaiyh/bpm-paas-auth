@@ -11,11 +11,9 @@ import com.puiui.auth.service.DeptService;
 import com.puiui.auth.web.dto.DeptDto;
 import com.puiui.auth.web.dto.TreeDto;
 import org.springframework.stereotype.Component;
-import sun.reflect.generics.tree.Tree;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 @Component
