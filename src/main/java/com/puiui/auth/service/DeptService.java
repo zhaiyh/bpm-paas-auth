@@ -9,4 +9,10 @@ public interface DeptService {
     List<TreeDto> queryTreeByParentId(Long pid);
 
     void save(DeptDto deptDto);
+
+    boolean queryExistOfDeptName(Long pid, String deptName);
+
+    void updateInfo(DeptDto deptDto);
+
+    void delete(Long id);
 }

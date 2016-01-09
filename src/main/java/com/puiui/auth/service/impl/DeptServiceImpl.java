@@ -66,9 +66,24 @@ public class DeptServiceImpl implements DeptService {
         Dept dept = new Dept(deptDto.getDeptName(), deptDto.getDeptDesc());
         Integer sortCode = deptDao.findMaxSortCodeByParentId(deptDto.getPid());
         dept.setSortCode(sortCode + 1);
-        dept.setDeptLevel((short)(parent.getDeptLevel() + 1));
+        dept.setDeptLevel((short) (parent.getDeptLevel() + 1));
         dept.setParent(parent);
         dept.save();
+    }
+
+    public boolean queryExistOfDeptName(Long pid, String deptName) {
+        return deptDao.findExistOfDeptName(pid, deptName);
+    }
+
+    public void updateInfo(DeptDto deptDto) {
+        Dept dept = ebeanServer.find(Dept.class, deptDto.getId());
+        dept.setDeptName(deptDto.getDeptName());
+        dept.setDeptDesc(deptDto.getDeptDesc());
+        dept.update();
+    }
+
+    public void delete(Long id) {
+        ebeanServer.delete(Dept.class, id);
     }
 
     public DeptDao getDeptDao() {

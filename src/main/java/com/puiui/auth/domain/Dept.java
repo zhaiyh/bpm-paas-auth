@@ -21,7 +21,7 @@ public class Dept extends Model {
     @ManyToOne
     @Column(nullable = false)
     private Dept parent; // 父部门
-    @OneToMany(mappedBy = "parent")
+    @OneToMany(mappedBy = "parent", cascade = CascadeType.REMOVE)
     private Set<Dept> children; // 子部门
     @Column(length = 100, nullable = false)
     private String deptName; // 部门名称
@@ -35,7 +35,7 @@ public class Dept extends Model {
     private Date createdate; // 创建日期
     @UpdatedTimestamp
     private Date updatedate; // 更新日期
-    @OneToMany(mappedBy = "dept")
+    @OneToMany(mappedBy = "dept", cascade = CascadeType.REMOVE)
     private Set<UserDeptMap> userDeptMaps; // 用户部门映射
 
     public Dept() {

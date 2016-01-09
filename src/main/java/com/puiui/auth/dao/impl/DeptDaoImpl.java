@@ -35,6 +35,15 @@ public class DeptDaoImpl implements DeptDao {
                 .getInteger("code");
     }
 
+    public boolean findExistOfDeptName(Long pid, String deptName) {
+        return Ebean
+                .find(Dept.class)
+                .where()
+                .eq("deptName", deptName)
+                .eq("parent_id", pid)
+                .findRowCount() > 0;
+    }
+
     public EbeanServer getEbeanServer() {
         return ebeanServer;
     }

@@ -6,8 +6,17 @@ package com.puiui.auth.web.dto;
 public class DeptDto {
 
     private Long pid;
+    private String id;
     private String deptName;
     private String deptDesc;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public Long getPid() {
         return pid;

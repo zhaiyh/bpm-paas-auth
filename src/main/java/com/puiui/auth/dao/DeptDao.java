@@ -8,4 +8,5 @@ import java.util.List;
 public interface DeptDao {
     List<Dept> findByParentId(Long pid);
     Integer findMaxSortCodeByParentId(Long pid);
+    boolean findExistOfDeptName(Long pid, String deptName);
 }
