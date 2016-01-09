@@ -1,6 +1,7 @@
 package com.puiui.auth.web.controller;
 
 import com.puiui.auth.domain.User;
+import com.puiui.auth.service.UserDeptMapService;
 import com.puiui.auth.service.UserService;
 import com.puiui.auth.web.dto.UserDto;
 import com.sun.org.apache.xpath.internal.operations.Bool;
@@ -24,6 +25,9 @@ public class UserController {
     @Resource
     private UserService userService;
 
+    @Resource
+    private UserDeptMapService userDeptMapService;
+
     @ResponseBody
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public Map<String, Object> add(Long deptId, @ModelAttribute User user) {
@@ -46,11 +50,20 @@ public class UserController {
         return map;
     }
 
+
     public UserService getUserService() {
         return userService;
     }
 
     public void setUserService(UserService userService) {
         this.userService = userService;
+    }
+
+    public UserDeptMapService getUserDeptMapService() {
+        return userDeptMapService;
+    }
+
+    public void setUserDeptMapService(UserDeptMapService userDeptMapService) {
+        this.userDeptMapService = userDeptMapService;
     }
 }

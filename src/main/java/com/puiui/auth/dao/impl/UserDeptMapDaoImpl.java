@@ -36,7 +36,7 @@ public class UserDeptMapDaoImpl implements UserDeptMapDao {
                 .findList();
     }
 
-    public EbeanServer getEbeanServer() {
+	public EbeanServer getEbeanServer() {
 		return ebeanServer;
 	}
 	public void setEbeanServer(EbeanServer ebeanServer) {
