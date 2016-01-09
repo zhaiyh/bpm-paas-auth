@@ -1,13 +1,12 @@
 package com.puiui.auth.dao.impl;
 
-import com.avaje.ebean.*;
+import com.avaje.ebean.Ebean;
+import com.avaje.ebean.EbeanServer;
 import com.puiui.auth.dao.DeptDao;
 import com.puiui.auth.domain.Dept;
-import com.puiui.auth.web.dto.TreeDto;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
-import java.sql.ResultSet;
 import java.util.List;
 
 @Component
@@ -42,6 +41,41 @@ public class DeptDaoImpl implements DeptDao {
                 .eq("deptName", deptName)
                 .eq("parent_id", pid)
                 .findRowCount() > 0;
+    }
+
+    public List<Dept> findDeptOfRoot() {
+        return Ebean
+                .find(Dept.class)
+                .where("parent_id is null")
+                .orderBy()
+                .asc("sortCode")
+                .findList();
+    }
+
+    public void updateSortCodeOfAdd(Long pid, Integer sortCode) {
+        String sql = " update" +
+                        " auth_dept" +
+                    " set sort_code = sort_code + 1" +
+                    " where parent_id = :pid " +
+                    " and sort_code >= :sortCode";
+        ebeanServer
+                .createSqlUpdate(sql)
+                .setParameter("pid", pid)
+                .setParameter("sortCode", sortCode)
+                .execute();
+    }
+
+    public void updateSortCodeOfReduce(Long pid, Integer sortCode) {
+        String sql = " update" +
+                        " auth_dept" +
+                    " set sort_code = sort_code - 1" +
+                    " where parent_id = :pid " +
+                    " and sort_code > :sortCode";
+        ebeanServer
+                .createSqlUpdate(sql)
+                .setParameter("pid", pid)
+                .setParameter("sortCode", sortCode)
+                .execute();
     }
 
     public EbeanServer getEbeanServer() {

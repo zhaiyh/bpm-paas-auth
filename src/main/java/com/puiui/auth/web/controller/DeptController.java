@@ -23,7 +23,11 @@ public class DeptController {
     @ResponseBody
     @RequestMapping(value = "/tree/{pid}", method = RequestMethod.GET)
     public List<TreeDto> listByParent(@PathVariable Long pid) {
-        return deptService.queryTreeByParentId(pid);
+        if (pid == 0) {
+            return deptService.queryTreeOfRoot();
+        } else {
+            return deptService.queryTreeByParentId(pid);
+        }
     }
 
     @ResponseBody
@@ -38,7 +42,11 @@ public class DeptController {
             return map;
         }
         try {
-            deptService.save(deptDto);
+            if (deptDto.getPid() == null) {
+                deptService.saveRoot(deptDto);
+            } else {
+                deptService.save(deptDto);
+            }
             map.put("status", Boolean.TRUE);
             map.put("message", "添加成功");
         } catch (Exception e) {
@@ -77,7 +85,24 @@ public class DeptController {
             map.put("message", "删除失败");
             e.printStackTrace();
         }
-        return null;
+        return map;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/update/location", method = RequestMethod.POST)
+    public Map<String, Object> updateLocation(
+            Long deptId, Long backId) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        try {
+            deptService.updateLocation(deptId, backId);
+            map.put("status", Boolean.TRUE);
+            map.put("message", "修改成功");
+        } catch (Exception e) {
+            map.put("status", Boolean.FALSE);
+            map.put("message", "更新失败");
+            e.printStackTrace();
+        }
+        return map;
     }
 
     public DeptService getDeptService() {
