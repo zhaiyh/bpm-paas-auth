@@ -14,12 +14,6 @@ public class UserDaoImpl implements UserDao {
     @Resource
     private EbeanServer ebeanServer;
 
-    public boolean findExistOfUsername(String username) {
-        return Ebean.find(User.class)
-                    .where()
-                    .eq("username", username)
-                    .findRowCount() > 0;
-    }
 
     public EbeanServer getEbeanServer() {
         return ebeanServer;
@@ -29,4 +23,12 @@ public class UserDaoImpl implements UserDao {
         this.ebeanServer = ebeanServer;
     }
 
+    public User login(String username, String password) {
+        return ebeanServer
+                .find(User.class)
+                .where()
+                .eq("username", username)
+                .eq("password", password)
+                .findUnique();
+    }
 }
