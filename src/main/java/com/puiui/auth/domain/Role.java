@@ -30,8 +30,6 @@ public class Role extends Model {
     private Set<UserRoleMap> userRoleMaps; // 用户角色映射
     @OneToMany(mappedBy = "role")
     private Set<RoleMenuMap> roleMenuMaps; // 角色菜单映射
-    @OneToMany(mappedBy = "role")
-    private Set<RoleSecurityMap> roleSecurityMaps; // 角色菜单映射
     @ManyToOne
     @Column(nullable = false)
     private RoleGroup roleGroup; // 所属角色组
@@ -97,14 +95,6 @@ public class Role extends Model {
 
     public void setRoleMenuMaps(Set<RoleMenuMap> roleMenuMaps) {
         this.roleMenuMaps = roleMenuMaps;
-    }
-
-    public Set<RoleSecurityMap> getRoleSecurityMaps() {
-        return roleSecurityMaps;
-    }
-
-    public void setRoleSecurityMaps(Set<RoleSecurityMap> roleSecurityMaps) {
-        this.roleSecurityMaps = roleSecurityMaps;
     }
 
     public RoleGroup getRoleGroup() {

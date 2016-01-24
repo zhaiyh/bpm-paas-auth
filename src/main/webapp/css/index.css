@@ -1,0 +1,58 @@
+html {
+    font-family: sans-serif, Tahoma, Helvetica, Arial, Microsoft YaHei;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+}
+
+#mainLeft div .lnk {
+    width: 33.3333333%;
+    height: 60px;
+    float: left;
+    text-align: center;
+    padding-top: 15px;
+}
+
+.lnk img {
+    padding: 5px;
+    width: 40px;
+    height: 40px;
+}
+
+.lnk a:link {
+    text-decoration: none;
+}
+
+.lnk a:visited {
+    text-decoration: none;
+}
+
+.lnk a:hover {
+    text-decoration: none;
+}
+
+.lnk a:active {
+    text-decoration: none;
+}
+
+.baseInfoPanel {
+    float: left;
+    width: 35%;
+}
+
+.cpuPanel {
+    width: 65%;
+}
+
+.mainPanel {
+    padding: 10px;
+}
+
+.baseInfoBody {
+    width: 35%;
+    height: 350px;
+}
+
+.cpuMonitorBody {
+    width: 65%;
+    height: 350px;
+}

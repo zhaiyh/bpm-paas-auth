@@ -1,0 +1,26 @@
+<div id="tree">
+</div>
+<script>
+    $("#tree").tree({
+        lines: true,
+        animate: true,
+        url: "../data/tree.json",
+        onClick: treeNodeClickEvent
+    });
+
+    function treeNodeClickEvent(node) {
+        var exists = $("#tt").tabs("exists", node.text);
+
+        if (!exists) {
+            $("#tt").tabs("add", {
+                title: node.text,
+                closable: true,
+                href: "main.html"
+            });
+        } else {
+            $("#tt").tabs("select", node.text);
+        }
+
+
+    }
+</script>

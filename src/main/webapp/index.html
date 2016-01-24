@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+    <link rel="stylesheet" href="vendor/easyui/themes/default/easyui.css">
+    <link rel="stylesheet" href="vendor/easyui/themes/icon.css">
+
+</head>
+
+<body id="ll" class="easyui-layout">
+<div data-options="region:'north',border: false" style="height: 50px">
+    <div style="padding:11px;">
+        <a href="#" class="easyui-linkbutton" data-options="plain:true">主页</a>
+        <a href="#" class="easyui-menubutton" data-options="menu:'#mm1',iconCls:'icon-edit'">建模</a>
+        <a href="#" class="easyui-menubutton" data-options="menu:'#mm2',iconCls:'icon-help'">集成</a>
+        <a href="#" class="easyui-menubutton" data-options="menu:'#mm3'">运行</a>
+        <a href="#" class="easyui-menubutton" data-options="menu:'#mm4'">系统</a>
+        <a href="#" class="easyui-menubutton" data-options="menu:'#mm5'" style="float: right;">个人信息</a>
+    </div>
+
+    <div id="mm1" style="width:150px;">
+        <div>组织结构</div>
+        <div>权限角色</div>
+    </div>
+    <div id="mm2" style="width:100px;">
+        <div>Help</div>
+        <div>Update</div>
+        <div>About</div>
+    </div>
+    <div id="mm3" class="menu-content" style="background:#f0f0f0;padding:10px;text-align:left">
+        <img src="http://www.jeasyui.com/images/logo1.png" style="width:150px;height:50px">
+        <p style="font-size:14px;color:#444;">Try jQuery EasyUI to build your modern, interactive, javascript
+            applications.</p>
+    </div>
+    <div id="mm4" class="menu-content" style="background:#f0f0f0;padding:10px;text-align:left">
+        <img src="http://www.jeasyui.com/images/logo1.png" style="width:150px;height:50px">
+        <p style="font-size:14px;color:#444;">Try jQuery EasyUI to build your modern, interactive, javascript
+            applications.</p>
+    </div>
+    <div id="mm5" class="menu-content" style="background:#f0f0f0;padding:10px;text-align:left">
+        <img src="http://www.jeasyui.com/images/logo1.png" style="width:150px;height:50px">
+        <p style="font-size:14px;color:#444;">Try jQuery EasyUI to build your modern, interactive, javascript
+            applications.</p>
+    </div>
+</div>
+<div id="west" data-options="region:'west'" style="width:20%;"></div>
+<div id="center" data-options="region:'center',border:false">
+    <div id="tt" class="easyui-tabs">
+        <div data-options="title:'主页',href:'page.html'"></div>
+    </div>
+</div>
+<script>
+    $("#mm1").menu({
+        onClick: function (item) {
+            if (item.text == "组织结构") {
+                $("#ll").layout("remove", "west");
+                $("#ll").layout("add", {
+                    region: 'west',
+                    href: "./left.html",
+                    width: '20%'
+                });
+            }
+        }
+    });
+</script>
+</body>
+<script src="vendor/easyui/jquery.min.js"></script>
+<script src="vendor/easyui/jquery.easyui.min.js"></script>
+<script src="js/index.js"></script>
+</html>

@@ -13,6 +13,7 @@
     <context:annotation-config/>
     <context:component-scan base-package="com.puiui.auth.web.controller"/>
     <mvc:annotation-driven/>
+    <mvc:resources mapping="/**" location="/" cache-period="31556926"/>
 
     <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
         <property name="messageConverters">
@@ -34,5 +35,6 @@
     </bean>
 
     <!-- 对转向页面的路径解析。prefix：前缀， suffix：后缀 -->
-    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:prefix="/" p:suffix=".jsp"/>
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:prefix="/WEB-INF/jsp/"
+          p:suffix=".jsp"/>
 </beans>

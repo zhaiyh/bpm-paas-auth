@@ -43,8 +43,6 @@ public class User extends Model {
     @OneToMany(mappedBy = "user")
     private Set<UserDeptMap> userDeptMaps; // 用户部门映射信息
     @OneToMany(mappedBy = "user")
-    private Set<UserJobRoleMap> userJobRoleMaps; // 用户岗位角色映射信息
-    @OneToMany(mappedBy = "user")
     private Set<UserExt> userExts; // 用户扩展信息表
     @OneToMany(mappedBy = "createUser")
     private Set<OperLog> operLog; // 操作日志信息
@@ -148,14 +146,6 @@ public class User extends Model {
 
     public void setUserDeptMaps(Set<UserDeptMap> userDeptMaps) {
         this.userDeptMaps = userDeptMaps;
-    }
-
-    public Set<UserJobRoleMap> getUserJobRoleMaps() {
-        return userJobRoleMaps;
-    }
-
-    public void setUserJobRoleMaps(Set<UserJobRoleMap> userJobRoleMaps) {
-        this.userJobRoleMaps = userJobRoleMaps;
     }
 
     public Set<UserExt> getUserExts() {
