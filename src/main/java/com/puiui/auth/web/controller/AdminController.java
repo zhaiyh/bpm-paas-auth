@@ -30,10 +30,10 @@ public class AdminController {
         if (user != null && user.getIsAdmin().equals(BasicCase.YES)) {
             return "redirect:/admin/index";
         } else if (user != null) {
-            model.addAttribute("tipMsg", "您不是管理员!");
+            model.addAttribute("tipMsg", "该用户不是管理员!");
             return "/admin/loginPage";
         } else {
-            model.addAttribute("tipMsg", "该账号不存在!");
+            model.addAttribute("tipMsg", "用户名或密码错误!");
             return "/admin/loginPage";
         }
     }
