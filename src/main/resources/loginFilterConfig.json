@@ -1,0 +1,20 @@
+{
+  "noFilter": [
+    "/css/*",
+    "/img/*",
+    "/js/*",
+    "/vendor/*"
+  ],
+  "jump": [
+    {
+      "method": "forward",
+      "from": "/*",
+      "to": "/goLoginPage"
+    },
+    {
+      "method": "redirect",
+      "from": "/admin/*",
+      "to": "/admin/goLoginPage"
+    }
+  ]
+}

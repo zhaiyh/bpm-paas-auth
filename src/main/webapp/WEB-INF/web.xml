@@ -8,6 +8,19 @@
         <param-value>classpath:applicationContext.xml</param-value>
     </context-param>
 
+    <filter>
+        <filter-name>LoginFilter</filter-name>
+        <filter-class>com.puiui.auth.web.filter.LoginFilter</filter-class>
+        <init-param>
+            <param-name>loginFilterConfig</param-name>
+            <param-value>loginFilterConfig.json</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>LoginFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/admin")
@@ -24,10 +25,11 @@ public class AdminController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String login(@RequestParam String username,
                         @RequestParam String password,
-                        String isRemeber,
+                        HttpSession session,
                         Model model) {
         User user = userService.login(username, password);
         if (user != null && user.getIsAdmin().equals(BasicCase.YES)) {
+            session.setAttribute("user", user);
             return "redirect:/admin/index";
         } else if (user != null) {
             model.addAttribute("tipMsg", "该用户不是管理员!");
